@@ -35,7 +35,7 @@ class UserSerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = '_all_'
+        fields = '__all__'
 
 
 #3. COMMUNICATION BOARDS (Web + Mobile UI) ---
