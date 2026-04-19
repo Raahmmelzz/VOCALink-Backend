@@ -137,3 +137,13 @@ AUTHENTICATION_BACKENDS = [
     # Keep the default one as a fallback just in case
     'django.contrib.auth.backends.ModelBackend',
 ]
+# Django REST Framework Settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}

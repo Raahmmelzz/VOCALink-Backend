@@ -31,10 +31,17 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    
     # Core identity
     username        = models.CharField(max_length=150, unique=True)
     email           = models.EmailField(unique=True)
+
+    # --- FRONTEND PROFILE FIELDS ---
+    first_name      = models.CharField(max_length=150, blank=True, default="")
+    last_name       = models.CharField(max_length=150, blank=True, default="")
+    contact_number  = models.CharField(max_length=15, blank=True, default="")
+    room_section    = models.CharField(max_length=50, blank=True, default="")
+    department      = models.CharField(max_length=100, blank=True, default="")
+    grade_handled   = models.CharField(max_length=50, blank=True, default="")
 
     # Web educator profile
     organization    = models.CharField(max_length=255, blank=True)
@@ -43,11 +50,30 @@ class User(AbstractBaseUser, PermissionsMixin):
     # Mobile profile
     display_name    = models.CharField(max_length=150, blank=True,
                                        help_text="Shown in mobile Settings header")
-
-    # Django internals
+    
+    # --- DJANGO INTERNALS (This is what was missing) ---
     is_active       = models.BooleanField(default=True)
     is_staff        = models.BooleanField(default=False)
     date_joined     = models.DateTimeField(default=timezone.now)
+
+    objects = UserManager()
+
+    USERNAME_FIELD  = "email"
+    REQUIRED_FIELDS = ["username"]
+
+    class Meta:
+        verbose_name        = "User"
+        verbose_name_plural = "Users"
+
+    def __str__(self):
+        return f"{self.username} <{self.email}>"
+
+    @property
+    def initials(self):
+        """Derived field used by both Web and Mobile avatars."""
+        name = self.display_name or self.username
+        parts = name.split()
+        return "".join(p[0] for p in parts[:2]).upper()
 
     objects = UserManager()
 

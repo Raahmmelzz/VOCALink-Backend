@@ -17,13 +17,15 @@ class SpecializationSerializer(serializers.ModelSerializer):
         fields = ['id', 'label']
 
 class UserSerializer(serializers.ModelSerializer):
-    # initials is a property in the model, we keep it for the avatar in the UI
     initials = serializers.ReadOnlyField() 
 
     class Meta:
         model = User
-        # Removed: organization, bio, and display_name
-        fields = ['id', 'username', 'email', 'password', 'initials']
+        fields = [
+            'id', 'username', 'email', 'password', 'initials',
+            'first_name', 'last_name', 'display_name', 'contact_number', 
+            'room_section', 'department', 'grade_handled', 'organization', 'bio'
+        ]
         extra_kwargs = {
             'password': {'write_only': True}
         }
