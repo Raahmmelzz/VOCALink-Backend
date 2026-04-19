@@ -1,3 +1,4 @@
+"""w/ user change"""
 """
 Django settings for core project.
 
