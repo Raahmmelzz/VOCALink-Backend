@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+"""w/ user change"""
+>>>>>>> origin/nick-user2
 from rest_framework import viewsets
 from .models import User, Student, Board, Card
 from .serializers import (

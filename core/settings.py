@@ -1,3 +1,4 @@
+"""w/ user change"""
 """
 Django settings for core project.
 
@@ -126,4 +127,17 @@ CORS_ALLOW_ALL_ORIGINS = True
 AUTH_USER_MODEL = 'api.User'
 
 # 3. ID format (Fixes warnings)
+<<<<<<< HEAD
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+=======
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Tell Django to use our custom backend that allows email OR username
+AUTHENTICATION_BACKENDS = [
+    # Replace 'api' with the actual folder name where you saved backends.py!
+    'api.backends.EmailOrUsernameModelBackend', 
+    
+    # Keep the default one as a fallback just in case
+    'django.contrib.auth.backends.ModelBackend',
+]
+>>>>>>> origin/nick-user2

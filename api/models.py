@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+"""test changes"""
+>>>>>>> origin/nick-user2
 from django.db import models
 
 # Create your models here.
