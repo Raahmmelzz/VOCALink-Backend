@@ -127,9 +127,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 AUTH_USER_MODEL = 'api.User'
 
 # 3. ID format (Fixes warnings)
-<<<<<<< HEAD
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-=======
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Tell Django to use our custom backend that allows email OR username
@@ -140,4 +137,15 @@ AUTHENTICATION_BACKENDS = [
     # Keep the default one as a fallback just in case
     'django.contrib.auth.backends.ModelBackend',
 ]
->>>>>>> origin/nick-user2
+
+# Django REST Framework Settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
+
